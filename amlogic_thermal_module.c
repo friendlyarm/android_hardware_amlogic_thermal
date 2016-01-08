@@ -1005,7 +1005,8 @@ static int amlogic_thermal_probe(struct platform_device *pdev)
     int ret, trim_flag;
     struct amlogic_thermal_platform_data *pdata=NULL;
 
-    device_rename(&pdev->dev, "thermal");
+    dev_set_name(&pdev->dev, "%s", "thermal");
+    pdev->name = dev_name(&pdev->dev);
     dbg_dev = &pdev->dev;
     ret = thermal_firmware_init();
     if (ret < 0) {
